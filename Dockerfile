@@ -1,17 +1,16 @@
 FROM ubuntu
-
-WORKDIR /usr/src/app
+WORKDIR /workspace
 COPY . .
+
 RUN apt-get -y update
 
-RUN apt-get -y install python3 \
-&& apt-get -y install python3-pip \
-&& apt-get install -y git \
-&& apt-get install -y vim \
-&& pip3 install -r requirements.txt \
-&& git config --global user.name alphab2000x \
-&& git config --global user.email alphab200x@hotmail.fr \
-&& git clone https://github.com/alphab2000x/docker.git
+RUN apt-get install -y python3.8 python3-pip vim git	
+RUN pip3 install -r requirement.txt 
+
+RUN git config --global user.name frag30041997 \				
+&& git config --global user.email frag30041997@gmail.com \
+&& git clone https://github.com/frag30041997/insidedock.git
+
 
 EXPOSE 8000
-CMD ["jupyter", "notebook", "--port=8000", "--no-browser", "--ip=0.0.0.0", "--allow-root"]
+CMD jupyter notebook --no-browser --allow-root --ip 0.0.0.0 --port 8000 
